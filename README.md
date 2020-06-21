@@ -1,2 +1,2 @@
 # GCSE-Grader
-A joke website that allocates GCSE grades
+A website which generates 2020 GCSE grades
