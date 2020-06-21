@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+	background-color: #0A1128;
+	color: #FEFCFB;
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+	margin: 0;
+	padding: 1.5rem;
+	text-align: center;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+button {
+	border: none;
+	border-radius: 0.2rem;
+	box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem black;
+	cursor: pointer;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.3em;
+	padding: 1rem 2rem;
+	margin: 1rem;
+}
+
+#slot-machine {
+	background-color: #034078;
+	text-align: center;	
+}
+#spin-button {
+	background-color: #90708C;
+}
+
+#slots {
+	display: flex;
+	justify-content: center;
+	position: relative;
+}
+.slot-target {
+	background-color: #1282A255;
+	border: 0.3rem solid #1282A2;
+	height: 4.5rem;
+	position: absolute;
+	width: 100%;
+	margin-top: 4.7rem;
+}
+
+.slot {
+	border: 0.2rem solid #90708C;
+	height: 13.5rem;
+	width: 10rem;
+	overflow: hidden;
+}
+.slot-grades {
+	animation-fill-mode: forwards;
+}
+@keyframes spin {
+	from {
+		margin-top: 0;
+	}
+	to {
+		margin-top: -180rem; /*40x4.5*/
+	}
+}
+
+
+.slot-grade {
+	background-color: #FEFCFB;
+	color: #0A1128;
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	line-height: 4.5rem;
+	height: 4.5rem;
+}
