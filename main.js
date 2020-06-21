@@ -36,7 +36,7 @@ const subjects = [
 	{ id: 'humanities', name: 'Humanities' },
 	{ id: 'business', name: 'Business Studies' },
 	{ id: 'economics', name: 'Economics' },
-	{ id: 'drama', name: 'Performing / Expressive Arts (Drama)' },
+	{ id: 'drama', name: 'Drama' },
 	{ id: 'media', name: 'Media / Film / TV Studies' },
 	{ id: 'music', name: 'Music' },
 	{ id: 'pe', name: 'Physical Education' },
@@ -54,42 +54,32 @@ try {
 	predictedGrades = oldGrades;
 }
 catch(error) {
-	predictedGrades = JSON.parse(atob('eyJQaHlzaWNzIjp7InRvdGFsIjoyMTYuNCwiaWQiOiJwaHlzaWNzIiwiZ3JhZGVzIjpbeyJncmFkZSI6IlUiLCJ0b3RhbCI6MC44NX0seyJncmFkZSI6IjEiLCJ0b3RhbCI6My4xfSx7ImdyYWRlIjoiMiIsInRvdGFsIjoxMi42fSx7ImdyYWRlIjoiMyIsInRvdGFsIjo0Ny4yfSx7ImdyYWRlIjoiNCIsInRvdGFsIjo5Ni40fSx7ImdyYWRlIjoiNSIsInRvdGFsIjoxNjIuOH0seyJncmFkZSI6IjYiLCJ0b3RhbCI6MjE2LjR9XSwiZ3JhZGUiOiI2In0sIk1hdGhzIjp7InRvdGFsIjoyMTYuNCwiaWQiOiJtYXRocyIsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJFbmdsaXNoIExhbmd1YWdlIjp7InRvdGFsIjoyMTYuNCwiaWQiOiJlbmctbGFuZyIsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJFbmdsaXNoIExpdGVyYXR1cmUiOnsidG90YWwiOjIxNi40LCJpZCI6ImVuZy1saXQiLCJncmFkZXMiOlt7ImdyYWRlIjoiVSIsInRvdGFsIjowLjg1fSx7ImdyYWRlIjoiMSIsInRvdGFsIjozLjF9LHsiZ3JhZGUiOiIyIiwidG90YWwiOjEyLjZ9LHsiZ3JhZGUiOiIzIiwidG90YWwiOjQ3LjJ9LHsiZ3JhZGUiOiI0IiwidG90YWwiOjk2LjR9LHsiZ3JhZGUiOiI1IiwidG90YWwiOjE2Mi44fSx7ImdyYWRlIjoiNiIsInRvdGFsIjoyMTYuNH1dLCJncmFkZSI6IjYifSwiQmlvbG9neSI6eyJ0b3RhbCI6MjE2LjQsImlkIjoiYmlvbG9neSIsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJDaGVtaXN0cnkiOnsidG90YWwiOjIxNi40LCJpZCI6ImNoZW1pc3RyeSIsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9fQ=='));
+	predictedGrades = JSON.parse(atob('eyJQaHlzaWNzIjp7InRvdGFsIjoyMDguMjUsImlkIjoicGh5c2ljcyIsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjUuMzV9LHsiZ3JhZGUiOiIyIiwidG90YWwiOjI0LjM1fSx7ImdyYWRlIjoiMyIsInRvdGFsIjo3Ni4yNX0seyJncmFkZSI6IjQiLCJ0b3RhbCI6MTQxLjg1fSx7ImdyYWRlIjoiNSIsInRvdGFsIjoyMDguMjV9XSwiZ3JhZGUiOiI1In0sIk1hdGhzIjp7InRvdGFsIjoyMDguMjUsImlkIjoibWF0aHMiLCJncmFkZXMiOlt7ImdyYWRlIjoiVSIsInRvdGFsIjowLjg1fSx7ImdyYWRlIjoiMSIsInRvdGFsIjo1LjM1fSx7ImdyYWRlIjoiMiIsInRvdGFsIjoyNC4zNX0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NzYuMjV9LHsiZ3JhZGUiOiI0IiwidG90YWwiOjE0MS44NX0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MjA4LjI1fV0sImdyYWRlIjoiNSJ9LCJFbmdsaXNoIExhbmd1YWdlIjp7InRvdGFsIjoyMDguMjUsImlkIjoiZW5nLWxhbmciLCJncmFkZXMiOlt7ImdyYWRlIjoiVSIsInRvdGFsIjowLjg1fSx7ImdyYWRlIjoiMSIsInRvdGFsIjo1LjM1fSx7ImdyYWRlIjoiMiIsInRvdGFsIjoyNC4zNX0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NzYuMjV9LHsiZ3JhZGUiOiI0IiwidG90YWwiOjE0MS44NX0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MjA4LjI1fV0sImdyYWRlIjoiNSJ9LCJFbmdsaXNoIExpdGVyYXR1cmUiOnsidG90YWwiOjIwOC4yNSwiaWQiOiJlbmctbGl0IiwiZ3JhZGVzIjpbeyJncmFkZSI6IlUiLCJ0b3RhbCI6MC44NX0seyJncmFkZSI6IjEiLCJ0b3RhbCI6NS4zNX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MjQuMzV9LHsiZ3JhZGUiOiIzIiwidG90YWwiOjc2LjI1fSx7ImdyYWRlIjoiNCIsInRvdGFsIjoxNDEuODV9LHsiZ3JhZGUiOiI1IiwidG90YWwiOjIwOC4yNX1dLCJncmFkZSI6IjUifSwiQmlvbG9neSI6eyJ0b3RhbCI6MjA4LjI1LCJpZCI6ImJpb2xvZ3kiLCJncmFkZXMiOlt7ImdyYWRlIjoiVSIsInRvdGFsIjowLjg1fSx7ImdyYWRlIjoiMSIsInRvdGFsIjo1LjM1fSx7ImdyYWRlIjoiMiIsInRvdGFsIjoyNC4zNX0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NzYuMjV9LHsiZ3JhZGUiOiI0IiwidG90YWwiOjE0MS44NX0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MjA4LjI1fV0sImdyYWRlIjoiNSJ9LCJDaGVtaXN0cnkiOnsidG90YWwiOjIwOC4yNSwiaWQiOiJjaGVtaXN0cnkiLCJncmFkZXMiOlt7ImdyYWRlIjoiVSIsInRvdGFsIjowLjg1fSx7ImdyYWRlIjoiMSIsInRvdGFsIjo1LjM1fSx7ImdyYWRlIjoiMiIsInRvdGFsIjoyNC4zNX0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NzYuMjV9LHsiZ3JhZGUiOiI0IiwidG90YWwiOjE0MS44NX0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MjA4LjI1fV0sImdyYWRlIjoiNSJ9fQ=='));
 }
 updateSlots();
 
 // Add Predicted Grades
 for (let subject of subjects) {
 	$('#predicted-grades').append(`
-	<div class="subject">
+	<div class="subject ${!predictedGrades[subject.name] && 'subject-disabled'}" id="${subject.id}">
 		<img src="/icons/${subject.id}.png" alt="Icon of ${subject.name}">
 		<h3>${subject.name}</h3>
-		<form onsubmit="return false">
-			<select name="grade" id="${subject.id}">
-				<option></option>
-				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === 'U' && 'selected'}>U</option>
-				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '1' && 'selected'}>1</option>
-				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '2' && 'selected'}>2</option>
-				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '3' && 'selected'}>3</option>
-				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '4' && 'selected'}>4</option>
-				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '5' && 'selected'}>5</option>
-				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '6' && 'selected'}>6</option>
-				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '7' && 'selected'}>7</option>
-				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '8' && 'selected'}>8</option>
-				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '9' && 'selected'}>9</option>
-			</select>
-		</form>
+		<div class="predicted-grade-controls">
+			<div id="${subject.id}-down" class="arrow-div"><i class="arrow arrow-left"></i></div>
+			<p id="${subject.id}-grade">${predictedGrades[subject.name] ? predictedGrades[subject.name].grade : ''}</p>
+			<div id="${subject.id}-up" class="arrow-div"><i class="arrow arrow-right"></i></div>
+		</div>
 	</div>`);
 
-	$('#'+subject.id).on('change', (event) => {
-		if (event.target.value) {
+	function changeValue(value) {
+		if (value) {
 			for (let grade of grades) {
 				gradeTotal += grade.proportion
 				grade.total = gradeTotal;
 			}
-			predictedGrades[subject.name] = { total: 0, id: subject.id, grades: [], grade: event.target.value };
+			predictedGrades[subject.name] = { total: 0, id: subject.id, grades: [], grade: value };
 
-			let gradeIndex = grades.findIndex(grade => grade.grade == event.target.value);
+			let gradeIndex = grades.findIndex(grade => grade.grade == value);
 			if (gradeIndex === -1) return;
 
 			for (let i = 0; i < grades.length && i < gradeIndex + 1; i++) {
@@ -108,10 +98,33 @@ for (let subject of subjects) {
 					total: predictedGrades[subject.name].total
 				});
 			}
+			$('#'+subject.id).removeClass('subject-disabled');
 		}
-		else delete predictedGrades[subject.name];
+		else {
+			delete predictedGrades[subject.name];
+			$('#'+subject.id).addClass('subject-disabled');
+		};
+		$(`#${subject.id}-grade`).text(value);
 		localStorage.setItem('predictedGrades', btoa(JSON.stringify(predictedGrades)));
 		updateSlots();
+	}
+
+	$(`#${subject.id}-down`).on('click', () => {
+		if (predictedGrades[subject.name]) {
+			let gradeIndex = grades.findIndex(grade => grade.grade == predictedGrades[subject.name].grade) - 1;
+			if (gradeIndex < 0) changeValue('');
+			else changeValue(grades[gradeIndex].grade);
+		}
+		else changeValue(grades[grades.length-1].grade);
+		
+	});
+	$(`#${subject.id}-up`).on('click', () => {
+		if (predictedGrades[subject.name]) {
+			let gradeIndex = grades.findIndex(grade => grade.grade == predictedGrades[subject.name].grade) + 1;
+			if (gradeIndex > grades.length-1) changeValue('');
+			else changeValue(grades[gradeIndex].grade);
+		}
+		else changeValue(grades[0].grade);
 	});
 }
 
