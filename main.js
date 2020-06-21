@@ -40,6 +40,7 @@ const subjects = [
 	{ id: 'music', name: 'Music' }
 ]
 var canSpin = false;
+var spinTimeout = null;
 
 // Add Predicted Grades
 var predictedGrades = {};
@@ -92,7 +93,6 @@ for (let subject of subjects) {
 					total: predictedGrades[subject.name].total
 				});
 			}
-			console.log(predictedGrades);
 		}
 		else delete predictedGrades[subject.name];
 		updateSlots();
@@ -101,6 +101,10 @@ for (let subject of subjects) {
 
 var longestDuration = 0;
 function updateSlots(full = false) {
+	if (spinTimeout) {
+		clearTimeout(spinTimeout);
+		spinTimeout = null;
+	}
 	$('#slots').empty();
 	if (Object.keys(predictedGrades).length > 0) {
 		canSpin = true;
@@ -168,15 +172,16 @@ function spin() {
 
 	$('.slot-grades').css('animation-name', 'spin');
 
-	setTimeout(() => {
+	spinTimeout = setTimeout(() => {
 		$('.slot-grades').css('duration', 0);
 		$('.slot-grade-actual').addClass('grown-slot-grade');
 		$('.slot-grade-fill').addClass('hidden-slot-grade');
 
-		setTimeout(() => {
+		spinTimeout = setTimeout(() => {
 			$('#spin-button').text('Respin!');
 			$('#spin-button').css('cursor', 'pointer');
 			canSpin = true;
+			spinTimout = null;
 		}, 2000);
 	}, longestDuration*1000);
 }
