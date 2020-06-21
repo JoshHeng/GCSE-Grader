@@ -30,7 +30,7 @@ for (let i = 0; i < slotNum; i++) {
 	let slot = $('<div class="slot"></div></div>');
 	let slotGrades = $('<div class="slot-grades"></div>');
 
-	for (let z = 0; z < 4; z++) {
+	for (let z = 0; z < 3; z++) {
 		let grade = getGrade();
 		slotGrades.append(`<div class="slot-grade">${grade}</div>`);
 	}
@@ -41,24 +41,45 @@ for (let i = 0; i < slotNum; i++) {
 $('#slots').append('<div class="slot-target"></div>');
 
 
+let spinning = false;
 function spin() {
-	$('#slots').empty();
+	if (spinning) return;
+	spinning = true;
 
+	$('#slots').empty();
+	$('#spin-button').text('Generating Grades...');
+	$('#spin-button').css('cursor', 'not-allowed');
+
+	let longestDuration = 0;
 	for (let i = 0; i < slotNum; i++) {
 		let slot = $('<div class="slot"></div></div>');
 		let duration = Math.random()*4+4;
+		if (duration > longestDuration) longestDuration = duration;
 
 		let slotGrades = $(`<div class="slot-grades" style="animation-name: spin; animation-duration: ${duration}s"></div>`);
 
-		for (let z = 0; z < 45; z++) {
+		for (let z = 0; z < 41; z++) {
 			let grade = getGrade();
-			slotGrades.append(`<div class="slot-grade">${grade}</div>`);
+			if (z === 39) slotGrades.append(`<div class="slot-grade slot-grade-actual">${grade}</div>`);
+			else slotGrades.append(`<div class="slot-grade slot-grade-fill">${grade}</div>`);
 		}
 	
 		slot.append(slotGrades);
 		$('#slots').append(slot)
 	}
 	$('#slots').append('<div class="slot-target"></div>');
+
+	setTimeout(() => {
+		$('.slot-grades').css('duration', 0);
+		$('.slot-grade-actual').addClass('grown-slot-grade');
+		$('.slot-grade-fill').addClass('hidden-slot-grade');
+
+		setTimeout(() => {
+			$('#spin-button').text('Respin!');
+			$('#spin-button').css('cursor', 'pointer');
+			spinning = false;
+		}, 2000);
+	}, longestDuration*1000);
 }
 
 $('#spin-button').on('click', spin);
