@@ -6,7 +6,7 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 18px;
 	margin: 0;
-	padding: 1.5rem;
+	padding: 1rem;
 	text-align: center;
 }
 hr {
@@ -64,6 +64,7 @@ button {
 	margin: 1rem;
 	border: 0.4rem solid #90708C;
 	border-radius: 0.4rem;
+	overflow: hidden;
 }
 .slot-target {
 	background-color: #1282A255;
@@ -135,7 +136,8 @@ button {
 	border-radius: 0.4rem;
 	padding: 1rem;
 	margin: 0.5rem;
-	width: 10rem;
+	width: 8.3rem;
+	flex-grow: 1;
 }
 
 .modal-container {

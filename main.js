@@ -85,7 +85,7 @@ for (let subject of subjects) {
 			for (let i = 0; i < grades.length && i < gradeIndex + 1; i++) {
 				let total = grades[i].proportion;
 
-				if (i === gradeIndex) total = total * 4;
+				if (i === gradeIndex) total = total * 5;
 				else if (i+1 === gradeIndex) total = total * 4;
 				else if (i+2 === gradeIndex) total = total * 3;
 				else if (i+3 === gradeIndex) total = total * 2;
