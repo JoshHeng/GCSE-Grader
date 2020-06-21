@@ -20,11 +20,12 @@ const subjects = [
 	{ id: 'science', name: 'Science' },
 	{ id: 'biology', name: 'Biology' },
 	{ id: 'chemistry', name: 'Chemistry' },
-	{ id: 'health', name: 'Health & Social Care' },
 	{ id: 'physics', name: 'Physics' },
+	{ id: 'health', name: 'Health & Social Care' },
 	{ id: 'spanish', name: 'Spanish' },
 	{ id: 'french', name: 'French' },
 	{ id: 'german', name: 'German' },
+	{ id: 'latin', name: 'Latin' },
 	{ id: 'computing', name: 'Computing' },
 	{ id: 'dt', name: 'Design & Technology' },
 	{ id: 'art', name: 'Art & Design' },
@@ -37,7 +38,8 @@ const subjects = [
 	{ id: 'economics', name: 'Economics' },
 	{ id: 'drama', name: 'Performing / Expressive Arts (Drama)' },
 	{ id: 'media', name: 'Media / Film / TV Studies' },
-	{ id: 'music', name: 'Music' }
+	{ id: 'music', name: 'Music' },
+	{ id: 'pe', name: 'Physical Education' },
 ]
 var canSpin = false;
 var spinTimeout = null;
@@ -52,7 +54,7 @@ try {
 	predictedGrades = oldGrades;
 }
 catch(error) {
-	predictedGrades = JSON.parse(atob('eyJNYXRocyI6eyJ0b3RhbCI6MjE2LjQsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJFbmdsaXNoIExhbmd1YWdlIjp7InRvdGFsIjoyMTYuNCwiZ3JhZGVzIjpbeyJncmFkZSI6IlUiLCJ0b3RhbCI6MC44NX0seyJncmFkZSI6IjEiLCJ0b3RhbCI6My4xfSx7ImdyYWRlIjoiMiIsInRvdGFsIjoxMi42fSx7ImdyYWRlIjoiMyIsInRvdGFsIjo0Ny4yfSx7ImdyYWRlIjoiNCIsInRvdGFsIjo5Ni40fSx7ImdyYWRlIjoiNSIsInRvdGFsIjoxNjIuOH0seyJncmFkZSI6IjYiLCJ0b3RhbCI6MjE2LjR9XSwiZ3JhZGUiOiI2In0sIkVuZ2xpc2ggTGl0ZXJhdHVyZSI6eyJ0b3RhbCI6MjE2LjQsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJCaW9sb2d5Ijp7InRvdGFsIjoyMTYuNCwiZ3JhZGVzIjpbeyJncmFkZSI6IlUiLCJ0b3RhbCI6MC44NX0seyJncmFkZSI6IjEiLCJ0b3RhbCI6My4xfSx7ImdyYWRlIjoiMiIsInRvdGFsIjoxMi42fSx7ImdyYWRlIjoiMyIsInRvdGFsIjo0Ny4yfSx7ImdyYWRlIjoiNCIsInRvdGFsIjo5Ni40fSx7ImdyYWRlIjoiNSIsInRvdGFsIjoxNjIuOH0seyJncmFkZSI6IjYiLCJ0b3RhbCI6MjE2LjR9XSwiZ3JhZGUiOiI2In0sIkNoZW1pc3RyeSI6eyJ0b3RhbCI6MjE2LjQsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJQaHlzaWNzIjp7InRvdGFsIjoyMTYuNCwiZ3JhZGVzIjpbeyJncmFkZSI6IlUiLCJ0b3RhbCI6MC44NX0seyJncmFkZSI6IjEiLCJ0b3RhbCI6My4xfSx7ImdyYWRlIjoiMiIsInRvdGFsIjoxMi42fSx7ImdyYWRlIjoiMyIsInRvdGFsIjo0Ny4yfSx7ImdyYWRlIjoiNCIsInRvdGFsIjo5Ni40fSx7ImdyYWRlIjoiNSIsInRvdGFsIjoxNjIuOH0seyJncmFkZSI6IjYiLCJ0b3RhbCI6MjE2LjR9XSwiZ3JhZGUiOiI2In19'));
+	predictedGrades = JSON.parse(atob('eyJQaHlzaWNzIjp7InRvdGFsIjoyMTYuNCwiaWQiOiJwaHlzaWNzIiwiZ3JhZGVzIjpbeyJncmFkZSI6IlUiLCJ0b3RhbCI6MC44NX0seyJncmFkZSI6IjEiLCJ0b3RhbCI6My4xfSx7ImdyYWRlIjoiMiIsInRvdGFsIjoxMi42fSx7ImdyYWRlIjoiMyIsInRvdGFsIjo0Ny4yfSx7ImdyYWRlIjoiNCIsInRvdGFsIjo5Ni40fSx7ImdyYWRlIjoiNSIsInRvdGFsIjoxNjIuOH0seyJncmFkZSI6IjYiLCJ0b3RhbCI6MjE2LjR9XSwiZ3JhZGUiOiI2In0sIk1hdGhzIjp7InRvdGFsIjoyMTYuNCwiaWQiOiJtYXRocyIsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJFbmdsaXNoIExhbmd1YWdlIjp7InRvdGFsIjoyMTYuNCwiaWQiOiJlbmctbGFuZyIsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJFbmdsaXNoIExpdGVyYXR1cmUiOnsidG90YWwiOjIxNi40LCJpZCI6ImVuZy1saXQiLCJncmFkZXMiOlt7ImdyYWRlIjoiVSIsInRvdGFsIjowLjg1fSx7ImdyYWRlIjoiMSIsInRvdGFsIjozLjF9LHsiZ3JhZGUiOiIyIiwidG90YWwiOjEyLjZ9LHsiZ3JhZGUiOiIzIiwidG90YWwiOjQ3LjJ9LHsiZ3JhZGUiOiI0IiwidG90YWwiOjk2LjR9LHsiZ3JhZGUiOiI1IiwidG90YWwiOjE2Mi44fSx7ImdyYWRlIjoiNiIsInRvdGFsIjoyMTYuNH1dLCJncmFkZSI6IjYifSwiQmlvbG9neSI6eyJ0b3RhbCI6MjE2LjQsImlkIjoiYmlvbG9neSIsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJDaGVtaXN0cnkiOnsidG90YWwiOjIxNi40LCJpZCI6ImNoZW1pc3RyeSIsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9fQ=='));
 }
 updateSlots();
 
@@ -60,6 +62,7 @@ updateSlots();
 for (let subject of subjects) {
 	$('#predicted-grades').append(`
 	<div class="subject">
+		<img src="/icons/${subject.id}.png" alt="Icon of ${subject.name}">
 		<h3>${subject.name}</h3>
 		<form onsubmit="return false">
 			<select name="grade" id="${subject.id}">
@@ -84,7 +87,7 @@ for (let subject of subjects) {
 				gradeTotal += grade.proportion
 				grade.total = gradeTotal;
 			}
-			predictedGrades[subject.name] = { total: 0, grades: [], grade: event.target.value };
+			predictedGrades[subject.name] = { total: 0, id: subject.id, grades: [], grade: event.target.value };
 
 			let gradeIndex = grades.findIndex(grade => grade.grade == event.target.value);
 			if (gradeIndex === -1) return;
@@ -134,7 +137,7 @@ function updateSlots(full = false) {
 
 	for (let [subjectName, predictedGrade] of Object.entries(predictedGrades)) {
 		let slot = $('<div class="slot"></div>');
-		slot.append(`<div class="slot-title">${subjectName}</div>`);
+		slot.append(`<div class="slot-title"><img src="/icons/${predictedGrade.id}.png" alt="Icon of ${subjectName}"></div>`);
 
 		let slotGradesWrapper = $(`<div class="slot-grades-wrapper"></div>`);
 
@@ -179,10 +182,10 @@ function updateSlots(full = false) {
 
 function spin() {
 	if (!canSpin) return;
-	canSpin = false;
-
 	updateSlots(true);
-
+	canSpin = false;
+	$('#spin-button').text('Calculating...');
+	$('#spin-button').css('cursor', 'not-allowed');
 	$('.slot-grades').css('animation-name', 'spin');
 
 	spinTimeout = setTimeout(() => {

@@ -9,6 +9,12 @@ body {
 	padding: 1.5rem;
 	text-align: center;
 }
+hr {
+	border-color: #FEFCFb;
+}
+a {
+	color: #8acee9;
+}
 
 * {
 	box-sizing: border-box;
@@ -127,7 +133,30 @@ button {
 .subject {
 	background-color: #90708C;
 	border-radius: 0.4rem;
-	padding: 0 1rem 1rem 1rem;
+	padding: 1rem;
 	margin: 0.5rem;
 	width: 10rem;
+}
+
+.modal-container {
+	position: fixed;
+	background-color: #00000077;
+	z-index: 1;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+.modal {
+	background-color: #90708C;
+	border-radius: 0.3rem;
+	position: fixed;
+	z-index: 1;
+	left: 10%;
+	right: 10%;
+	top: 10%;
+	padding: 1rem;
+}
+.modal button {
+	background-color: #1282A255;
 }
