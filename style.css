@@ -65,15 +65,17 @@ button {
 	height: 4.5rem;
 	position: absolute;
 	width: 100%;
-	margin-top: 4.7rem;
+	margin-top: 9rem;
 }
 
 .slot {
 	background-color: #FEFCFB;
 	border: 0.2rem solid #90708C;
+	flex-grow: 1;
+}
+.slot-grades-wrapper {
 	height: 13.5rem;
 	overflow: hidden;
-	flex-grow: 1;
 }
 .slot-grades {
 	animation-fill-mode: forwards;
@@ -105,12 +107,27 @@ button {
 	to { opacity: 0.00; }
 }
 
-
-.slot-grade {
+.slot-grade, .slot-title {
 	color: #0A1128;
 	font-size: 2em;
 	font-weight: bold;
 	text-align: center;
 	line-height: 4.5rem;
 	height: 4.5rem;
+}
+.slot-title {
+	background-color: #90708C;
+}
+
+#predicted-grades {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.subject {
+	background-color: #90708C;
+	border-radius: 0.4rem;
+	padding: 0 1rem 1rem 1rem;
+	margin: 0.5rem;
+	width: 10rem;
 }
