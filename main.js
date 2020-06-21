@@ -41,9 +41,22 @@ const subjects = [
 ]
 var canSpin = false;
 var spinTimeout = null;
+var predictedGrades = {};
+
+//Fetch old info from localstorage
+let oldGrades = localStorage.getItem('predictedGrades');
+try {
+	if (!oldGrades) throw null;
+	oldGrades = atob(oldGrades);
+	oldGrades = JSON.parse(oldGrades);
+	predictedGrades = oldGrades;
+}
+catch(error) {
+	predictedGrades = JSON.parse(atob('eyJNYXRocyI6eyJ0b3RhbCI6MjE2LjQsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJFbmdsaXNoIExhbmd1YWdlIjp7InRvdGFsIjoyMTYuNCwiZ3JhZGVzIjpbeyJncmFkZSI6IlUiLCJ0b3RhbCI6MC44NX0seyJncmFkZSI6IjEiLCJ0b3RhbCI6My4xfSx7ImdyYWRlIjoiMiIsInRvdGFsIjoxMi42fSx7ImdyYWRlIjoiMyIsInRvdGFsIjo0Ny4yfSx7ImdyYWRlIjoiNCIsInRvdGFsIjo5Ni40fSx7ImdyYWRlIjoiNSIsInRvdGFsIjoxNjIuOH0seyJncmFkZSI6IjYiLCJ0b3RhbCI6MjE2LjR9XSwiZ3JhZGUiOiI2In0sIkVuZ2xpc2ggTGl0ZXJhdHVyZSI6eyJ0b3RhbCI6MjE2LjQsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJCaW9sb2d5Ijp7InRvdGFsIjoyMTYuNCwiZ3JhZGVzIjpbeyJncmFkZSI6IlUiLCJ0b3RhbCI6MC44NX0seyJncmFkZSI6IjEiLCJ0b3RhbCI6My4xfSx7ImdyYWRlIjoiMiIsInRvdGFsIjoxMi42fSx7ImdyYWRlIjoiMyIsInRvdGFsIjo0Ny4yfSx7ImdyYWRlIjoiNCIsInRvdGFsIjo5Ni40fSx7ImdyYWRlIjoiNSIsInRvdGFsIjoxNjIuOH0seyJncmFkZSI6IjYiLCJ0b3RhbCI6MjE2LjR9XSwiZ3JhZGUiOiI2In0sIkNoZW1pc3RyeSI6eyJ0b3RhbCI6MjE2LjQsImdyYWRlcyI6W3siZ3JhZGUiOiJVIiwidG90YWwiOjAuODV9LHsiZ3JhZGUiOiIxIiwidG90YWwiOjMuMX0seyJncmFkZSI6IjIiLCJ0b3RhbCI6MTIuNn0seyJncmFkZSI6IjMiLCJ0b3RhbCI6NDcuMn0seyJncmFkZSI6IjQiLCJ0b3RhbCI6OTYuNH0seyJncmFkZSI6IjUiLCJ0b3RhbCI6MTYyLjh9LHsiZ3JhZGUiOiI2IiwidG90YWwiOjIxNi40fV0sImdyYWRlIjoiNiJ9LCJQaHlzaWNzIjp7InRvdGFsIjoyMTYuNCwiZ3JhZGVzIjpbeyJncmFkZSI6IlUiLCJ0b3RhbCI6MC44NX0seyJncmFkZSI6IjEiLCJ0b3RhbCI6My4xfSx7ImdyYWRlIjoiMiIsInRvdGFsIjoxMi42fSx7ImdyYWRlIjoiMyIsInRvdGFsIjo0Ny4yfSx7ImdyYWRlIjoiNCIsInRvdGFsIjo5Ni40fSx7ImdyYWRlIjoiNSIsInRvdGFsIjoxNjIuOH0seyJncmFkZSI6IjYiLCJ0b3RhbCI6MjE2LjR9XSwiZ3JhZGUiOiI2In19'));
+}
+updateSlots();
 
 // Add Predicted Grades
-var predictedGrades = {};
 for (let subject of subjects) {
 	$('#predicted-grades').append(`
 	<div class="subject">
@@ -51,16 +64,16 @@ for (let subject of subjects) {
 		<form onsubmit="return false">
 			<select name="grade" id="${subject.id}">
 				<option></option>
-				<option>U</option>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-				<option>6</option>
-				<option>7</option>
-				<option>8</option>
-				<option>9</option>
+				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === 'U' && 'selected'}>U</option>
+				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '1' && 'selected'}>1</option>
+				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '2' && 'selected'}>2</option>
+				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '3' && 'selected'}>3</option>
+				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '4' && 'selected'}>4</option>
+				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '5' && 'selected'}>5</option>
+				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '6' && 'selected'}>6</option>
+				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '7' && 'selected'}>7</option>
+				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '8' && 'selected'}>8</option>
+				<option ${predictedGrades[subject.name] && predictedGrades[subject.name].grade === '9' && 'selected'}>9</option>
 			</select>
 		</form>
 	</div>`);
@@ -86,7 +99,6 @@ for (let subject of subjects) {
 				else if (i+4 === gradeIndex) total = total * 1;
 				else total = total * 0.5;
 
-
 				predictedGrades[subject.name].total += total;
 				predictedGrades[subject.name].grades.push({
 					grade: grades[i].grade,
@@ -95,6 +107,7 @@ for (let subject of subjects) {
 			}
 		}
 		else delete predictedGrades[subject.name];
+		localStorage.setItem('predictedGrades', btoa(JSON.stringify(predictedGrades)));
 		updateSlots();
 	});
 }
