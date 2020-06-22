@@ -45,6 +45,71 @@ var canSpin = false;
 var spinTimeout = null;
 var predictedGrades = {};
 
+//Resizing to vertical slot machine if too small
+var horizontal = true;
+var slotMachineWidth = 1000;
+var slotsCount = 1;
+
+function resize(onlyUpdate = false) {
+	if (!predictedGrades) return;
+	if (onlyUpdate) {
+		slotMachineWidth = $('#slot-machine').width();
+	}
+	const size = (slotMachineWidth-50)/Object.keys(predictedGrades).length;
+
+	if (size < 45) {
+		if (horizontal) {
+			horizontal = false;
+			$('#slots-wrapper').addClass('vertical');
+
+			slotsCount = Math.floor(slotMachineWidth/(18*18));
+			if (slotsCount < 1) slotsCount = 1;
+		}
+		else if (onlyUpdate) {
+			slotsCount = Math.floor(slotMachineWidth/(18*18));
+			if (slotsCount < 1) slotsCount = 1;
+		}
+		
+
+		if ($('.slots').length > slotsCount) {
+			$('.slot').each(function (index) {
+				$('.slots').get(index % slotsCount).append(this);
+			});
+
+			for (let i = slotsCount; i < $('.slots').length; i++) {
+				$('.slots').get(i).remove();
+			}
+		}
+		else if ($('.slots').length < slotsCount) {
+			for (let i = 1; i < slotsCount; i++) {
+				$('#slots-wrapper').append('<div class="slots"><div class="slot-target"></div></div>');
+			}
+
+			$('.slot').each(function (index) {
+				$('.slots').get(index % slotsCount).append(this);
+			});
+		}
+	}
+	else {
+		if (horizontal) return;
+		horizontal = true;
+		$('#slots-wrapper').removeClass('vertical');
+
+		if ($('.slots').length > 1) {
+			$('.slot').each(function () {
+				$('.slots').get(0).append(this);
+			});
+
+			for (let i = 1; i < slotsCount; i++) {
+				$('.slots').get(i).remove();
+			}
+		}
+		slotsCount = 1;
+	}
+}
+$(window).on('resize', resize);
+$(window).ready(resize);
+
 //Fetch old info from localstorage
 let oldGrades = localStorage.getItem('predictedGrades');
 try {
@@ -128,25 +193,6 @@ for (let subject of subjects) {
 	});
 }
 
-//Resizing to vertical slot machine if too small
-var horizontal = true;
-function resize() {
-	if (!predictedGrades) return;
-	const size = ($('#slot-machine').width()-50)/Object.keys(predictedGrades).length;
-	if (size < 45) {
-		if (!horizontal) return;
-		horizontal = false;
-		$('#slots').addClass('vertical');
-	}
-	else {
-		if (horizontal) return;
-		horizontal = true;
-		$('#slots').removeClass('vertical');
-	}
-}
-$(window).on('resize', resize);
-$(window).ready(resize);
-
 var longestDuration = 0;
 function updateSlots(full = false) {
 	if (spinTimeout) {
@@ -156,20 +202,22 @@ function updateSlots(full = false) {
 		spinTimeout = null;
 	}
 
-	$('#slots').empty();
+	$('.slots').empty();
+	$('.slots').append('<div class="slot-target"></>');
 	if (Object.keys(predictedGrades).length > 0) {
 		canSpin = true;
-		$('#slots').css('display', 'flex');
+		$('#slots-wrapper').css('display', 'flex');
 		$('#spin-button').text('Get My Grades!');
 		$('#spin-button').css('cursor', 'pointer');
 	}
 	else {
 		canSpin = false;
-		$('#slots').css('display', 'none');
+		$('#slots-wrapper').css('display', 'none');
 		$('#spin-button').text('v Select Your Predicted Grades v');
 		$('#spin-button').css('cursor', 'not-allowed');
 	}
 
+	let index = 0;
 	for (let [subjectName, predictedGrade] of Object.entries(predictedGrades)) {
 		let slot = $('<div class="slot"></div>');
 		slot.append(`<div class="slot-title"><img src="/icons/${predictedGrade.id}.png" alt="Icon of ${subjectName}"></div>`);
@@ -210,10 +258,11 @@ function updateSlots(full = false) {
 	
 		slotGradesWrapper.append(slotGrades);
 		slot.append(slotGradesWrapper);
-		$('#slots').append(slot)
+
+		$('.slots').eq(index % slotsCount).append(slot);
+		index++;
 	}
-	resize();
-	$('#slots').append('<div class="slot-target"></div>');
+	if (!full) resize(true);
 }
 
 function spin() {
@@ -227,7 +276,7 @@ function spin() {
 	$('.slot-grades').addClass('spin');
 
 	spinTimeout = setTimeout(() => {
-		$('.slot-grades').css('duration', 0);
+		$('.slot-grades').css('animation-duration', '0s');
 		$('.slot-grade-actual').addClass('grown-slot-grade');
 		$('.slot-grade-fill').addClass('hidden-slot-grade');
 		document.getElementById('audio-spin').pause();
