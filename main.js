@@ -150,11 +150,11 @@ for (let subject of subjects) {
 			for (let i = 0; i < grades.length && i < gradeIndex + 1; i++) {
 				let total = grades[i].proportion;
 
-				if (i === gradeIndex) total = total * 5;
-				else if (i+1 === gradeIndex) total = total * 4;
-				else if (i+2 === gradeIndex) total = total * 3;
-				else if (i+3 === gradeIndex) total = total * 2;
-				else if (i+4 === gradeIndex) total = total * 1;
+				if (i === gradeIndex) total = total * 5 + 100;
+				else if (i+1 === gradeIndex) total = total * 4 + 80;
+				else if (i+2 === gradeIndex) total = total * 3 + 50;
+				else if (i+3 === gradeIndex) total = total * 2 + 20;
+				else if (i+4 === gradeIndex) total = total * 1 + 10;
 				else total = total * 0.5;
 
 				predictedGrades[subject.name].total += total;
@@ -288,7 +288,7 @@ function spin() {
 			$('#spin-button').css('cursor', 'pointer');
 			canSpin = true;
 			spinTimout = null;
-		}, 2000);
+		}, 1000);
 	}, longestDuration*1000);
 }
 
