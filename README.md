@@ -1,2 +1,4 @@
-# GCSE-Grader
-A website which generates 2020 GCSE grades
+# GCSE Grader
+A joke website that calculates your GCSE results based on a complex algorithm
+
+Simply start a server at `/http` to get started.
