@@ -132,6 +132,8 @@ var longestDuration = 0;
 function updateSlots(full = false) {
 	if (spinTimeout) {
 		clearTimeout(spinTimeout);
+		document.getElementById('audio-spin').pause();
+		document.getElementById('audio-success').pause();
 		spinTimeout = null;
 	}
 	$('#slots').empty();
@@ -196,6 +198,8 @@ function updateSlots(full = false) {
 function spin() {
 	if (!canSpin) return;
 	updateSlots(true);
+	document.getElementById('audio-spin').currentTime = 0;
+	document.getElementById('audio-spin').play();
 	canSpin = false;
 	$('#spin-button').text('Calculating...');
 	$('#spin-button').css('cursor', 'not-allowed');
@@ -205,6 +209,9 @@ function spin() {
 		$('.slot-grades').css('duration', 0);
 		$('.slot-grade-actual').addClass('grown-slot-grade');
 		$('.slot-grade-fill').addClass('hidden-slot-grade');
+		document.getElementById('audio-spin').pause();
+		document.getElementById('audio-success').currentTime = 0;
+		document.getElementById('audio-success').play();
 
 		spinTimeout = setTimeout(() => {
 			$('#spin-button').text('Respin!');

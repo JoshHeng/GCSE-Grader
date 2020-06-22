@@ -12,42 +12,44 @@
   </head>
 
   <body>
-	  <h1>GCSE Grader</h1>
-	  <em>A very accurate machine which will calculate your 2020 GCSE results</em>
+		<h1>GCSE Grader</h1>
+		<em>A very accurate machine which will calculate your 2020 GCSE results</em>
 
-	  <noscript>
-		  This site requires JavaScript to run. Please enable JavaScript and reload.
-	  </noscript>
+		<noscript>
+			This site requires JavaScript to run. Please enable JavaScript and reload.
+		</noscript>
 
-	  <div id="slot-machine">
-		  <div id="slots" style="display: none;"></div>
+		<div id="slot-machine">
+			<div id="slots" style="display: none;"></div>
 
-		  <button id="spin-button">v Select Your Predicted Grades v</button>
+			<button id="spin-button">v Select Your Predicted Grades v</button>
 
-		  <h2>Predicted Grades</h2>
-		  <div id="predicted-grades">
-		  </div>
-	  </div>
-
-	  <script src="/main.js"></script>
-
-	  <a onclick="localStorage.clear(); location.reload();" style="cursor: pointer;">Reset</a>
-	   |
-	  <a onclick="$('#credits').css('display', 'block');" style="cursor: pointer;">Credits & Privacy</a>
-
-	  <div class="modal-container" id="credits" style="display: none;">
-		<div class="modal">
-			<h2>Credits & Privacy</h2>
-			<div>Made by <a href="https://www.joshheng.co.uk" rel="author" target="_blank">Josh Heng</a> <a href="https://paypal.me/JoshHeng1" target="_blank">(donations appreciated)</a></div>
-			<div>Open source on GitHub at <a href="https://github.com/JoshHeng/GCSE-Grader" target="_blank">JoshHeng/GCSE-Grader</a></div>
-			<hr>
-			<div>This site uses local storage to store your predicted grades in your browser.</div>
-			<div>This site also uses Google Analytics to collect anonomised data. It does this by collecting your IP address and placing a cookie in your browser.</div>
-			<hr>
-			<div>Icons made by <a href="https://www.flaticon.com/authors/dimitry-miroliubov" title="Dimitry Miroliubov">Dimitry Miroliubov</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/turkkub" title="turkkub">turkkub</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/itim2101" title="itim2101">itim2101</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/ultimatearm" title="ultimatearm">ultimatearm</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/inipagistudio" title="inipagistudio">inipagistudio</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/photo3idea-studio" title="photo3idea_studio">photo3idea_studio</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div>
-
-			<button onclick="$('#credits').css('display', 'none');">Close</button>
+			<h2>Predicted Grades</h2>
+			<div id="predicted-grades">
+			</div>
 		</div>
+
+		<audio controls="controls" loop="loop" style="display: none;" id="audio-spin"><source src="/sounds/spin.mp3" type="audio/mp3" />
+		<audio controls="controls" style="display: none;" id="audio-success"><source src="/sounds/success.mp3" type="audio/mp3" />
+		<script src="/main.js"></script>
+
+		<a onclick="localStorage.clear(); location.reload();" style="cursor: pointer;">Reset</a>
+		|
+		<a onclick="$('#credits').css('display', 'block');" style="cursor: pointer;">Credits & Privacy</a>
+
+		<div class="modal-container" id="credits" style="display: none;">
+			<div class="modal">
+				<h2>Credits & Privacy</h2>
+				<div>Made by <a href="https://www.joshheng.co.uk" rel="author" target="_blank">Josh Heng</a> <a href="https://paypal.me/JoshHeng1" target="_blank">(donations appreciated)</a></div>
+				<div>Open source on GitHub at <a href="https://github.com/JoshHeng/GCSE-Grader" target="_blank">JoshHeng/GCSE-Grader</a></div>
+				<hr>
+				<div>This site uses local storage to store your predicted grades in your browser.</div>
+				<div>This site also uses Google Analytics to collect anonomised data. It does this by collecting your IP address and placing a cookie in your browser.</div>
+				<hr>
+				<div>Icons made by <a href="https://www.flaticon.com/authors/dimitry-miroliubov" title="Dimitry Miroliubov">Dimitry Miroliubov</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/turkkub" title="turkkub">turkkub</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/itim2101" title="itim2101">itim2101</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/ultimatearm" title="ultimatearm">ultimatearm</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/inipagistudio" title="inipagistudio">inipagistudio</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/photo3idea-studio" title="photo3idea_studio">photo3idea_studio</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div>
+
+				<button onclick="$('#credits').css('display', 'none');">Close</button>
+			</div>
 	</div>
   </body>
 </html>
