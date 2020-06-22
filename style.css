@@ -103,11 +103,11 @@ button {
 .grown-slot-grade {
 	animation: growSlotGrade 1s;
 	animation-fill-mode: forwards;
-	font-size: 2.2em;
+	font-size: 2.5rem;
 }
 @keyframes growSlotGrade {
-	from { font-size: 2em; }
-	to { font-size: 2.3em; }
+	from { font-size: 2.2rem; }
+	to { font-size: 2.8rem; }
 }
 .hidden-slot-grade {
 	animation: hideSlotGrade 1s;
@@ -121,7 +121,7 @@ button {
 
 .slot-grade, .slot-title {
 	color: #0A1128;
-	font-size: 2em;
+	font-size: 2.2rem;
 	font-weight: bold;
 	text-align: center;
 	line-height: 4.5rem;
@@ -214,6 +214,8 @@ button {
 	right: 10%;
 	top: 10%;
 	padding: 1rem;
+	overflow-y: auto;
+	max-height: 80%;
 }
 .modal button {
 	background-color: #1282A255;

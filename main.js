@@ -136,7 +136,7 @@ for (let subject of subjects) {
 		</div>
 	</div>`);
 
-	function changeValue(value) {
+	function changeValue(value, subject) {
 		if (value) {
 			for (let grade of grades) {
 				gradeTotal += grade.proportion
@@ -177,19 +177,19 @@ for (let subject of subjects) {
 	$(`#${subject.id}-down`).on('click', () => {
 		if (predictedGrades[subject.name]) {
 			let gradeIndex = grades.findIndex(grade => grade.grade == predictedGrades[subject.name].grade) - 1;
-			if (gradeIndex < 0) changeValue('');
-			else changeValue(grades[gradeIndex].grade);
+			if (gradeIndex < 0) changeValue('', subject);
+			else changeValue(grades[gradeIndex].grade, subject);
 		}
-		else changeValue(grades[grades.length-1].grade);
+		else changeValue(grades[grades.length-1].grade, subject);
 		
 	});
 	$(`#${subject.id}-up`).on('click', () => {
 		if (predictedGrades[subject.name]) {
 			let gradeIndex = grades.findIndex(grade => grade.grade == predictedGrades[subject.name].grade) + 1;
-			if (gradeIndex > grades.length-1) changeValue('');
-			else changeValue(grades[gradeIndex].grade);
+			if (gradeIndex > grades.length-1) changeValue('', subject);
+			else changeValue(grades[gradeIndex].grade, subject);
 		}
-		else changeValue(grades[0].grade);
+		else changeValue(grades[0].grade, subject);
 	});
 }
 
