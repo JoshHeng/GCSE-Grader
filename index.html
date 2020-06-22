@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#2f2f2f" />
-    <meta name="description" content="GCSE Grader" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/style.css" />
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-    <title>GCSE Grader</title>
+	<title>GCSE Grader</title>
+	<link rel="icon" href="/favicon.png"  sizes="256x256"   type="image/png">
+	<link rel="apple-touch-icon apple-touch-icon-precomposed" sizes="256x256" href="/favicon.png">
+	<link rel="author copyright" href="https://www.joshheng.co.uk">
+
+	<meta name="description" content="A joke website that calculates your GCSE results based on a complex algorithm">
+	<meta name="theme-color" content="#90708C">
+
+	<meta property="og:image" content="/image.png">
+	<meta property="og:site_name" content="GCSE Grader">
+	<meta property="og:title" content="GCSE Grader">
+	<meta property="og:description" content="A joke website that calculates your GCSE results based on a complex algorithm">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://gcsegrader.joshheng.co.u">
+
+	<meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://gcsegrader.joshheng.co.uk">
+    <meta name="twitter:title" content="GCSE Grader">
+    <meta name="twitter:description" content="A joke website that calculates your GCSE results based on a complex algorithm">
+    <meta name="twitter:image" content="/image.png">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/style.css">
   </head>
 
   <body>
-		<h1>GCSE Grader</h1>
-		<em><del>A joke website that</del> calculates your GCSE results</em>
+		<h1 id="top">GCSE Grader</h1>
+		<em><del>A joke website that</del> calculates your GCSE results based on a complex algorithm</em>
 
 		<noscript>
 			This site requires JavaScript to run. Please enable JavaScript and reload.
@@ -37,7 +55,7 @@
 			<h2>Predicted Grades</h2>
 			<div id="predicted-grades">
 			</div>
-			<a href="#slot-machine" class="button">Back To Top</a>
+			<a href="#top" class="button">Back To Top</a>
 		</div>
 
 		<audio controls="controls" loop="loop" style="display: none;" id="audio-spin"><source src="/sounds/spin.mp3" type="audio/mp3" /></audio>
@@ -51,6 +69,8 @@
 		<div class="modal-container" id="credits" style="display: none;">
 			<div class="modal">
 				<h2>Credits & Privacy</h2>
+				<div>Copyright © 2020 Josh Heng</div>
+				<hr>
 				<div>Made by <a href="https://www.joshheng.co.uk" rel="author" target="_blank">Josh Heng</a> <a href="https://paypal.me/JoshHeng1" target="_blank">(donations appreciated)</a></div>
 				<div>Open source on GitHub at <a href="https://github.com/JoshHeng/GCSE-Grader" target="_blank">JoshHeng/GCSE-Grader</a></div>
 				<hr>
