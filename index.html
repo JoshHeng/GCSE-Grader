@@ -13,7 +13,7 @@
 
   <body>
 		<h1>GCSE Grader</h1>
-		<em>A very accurate machine which will calculate your 2020 GCSE results</em>
+		<em><del>A joke website that</del> calculates your GCSE results</em>
 
 		<noscript>
 			This site requires JavaScript to run. Please enable JavaScript and reload.
@@ -24,10 +24,20 @@
 
 			<button id="spin-button">v Select Your Predicted Grades v</button>
 
+			<div id="results" style="display: none;">
+				<h2>Results</h2>
+				<canvas id="results-canvas" width="595" height="842" style="display: none;"></canvas>
+				<img id="results-image" alt="An image of your results">
+				<div>
+					<a id="results-download" download="GCSE Results.png" class="button">Download</a>
+				</div>
+				
+			</div>
+
 			<h2>Predicted Grades</h2>
 			<div id="predicted-grades">
 			</div>
-			<a href="#slot-machine">^ Back To Top ^</a>
+			<a href="#slot-machine" class="button">Back To Top</a>
 		</div>
 
 		<audio controls="controls" loop="loop" style="display: none;" id="audio-spin"><source src="/sounds/spin.mp3" type="audio/mp3" /></audio>

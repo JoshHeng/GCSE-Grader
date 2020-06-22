@@ -20,7 +20,9 @@ a {
 	box-sizing: border-box;
 }
 
-button {
+button, .button {
+	background-color: #90708C;
+	text-decoration: none;;
 	border: none;
 	border-radius: 0.2rem;
 	box-shadow: none;
@@ -32,6 +34,7 @@ button {
 	margin: 1rem;
 	text-transform: uppercase;
 	font-weight: bold;
+	display: inline-block;
 }
 @keyframes tweeter {
 	0% {
@@ -268,4 +271,16 @@ button {
 .arrow-left {
 	transform: rotate(135deg);
   	-webkit-transform: rotate(135deg);
+}
+
+.results {
+	margin: 1rem;
+}
+#results-image {
+	object-fit: contain;
+	width: 100%;
+	max-width: 30rem;
+}
+#results-download {
+	
 }

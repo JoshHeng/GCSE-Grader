@@ -44,6 +44,7 @@ const subjects = [
 var canSpin = false;
 var spinTimeout = null;
 var predictedGrades = {};
+var results = [];
 
 //Resizing to vertical slot machine if too small
 var horizontal = true;
@@ -195,6 +196,8 @@ for (let subject of subjects) {
 
 var longestDuration = 0;
 function updateSlots(full = false) {
+	$('#results').css('display', 'none');
+
 	if (spinTimeout) {
 		clearTimeout(spinTimeout);
 		document.getElementById('audio-spin').pause();
@@ -218,6 +221,8 @@ function updateSlots(full = false) {
 	}
 
 	let index = 0;
+	results = [];
+
 	for (let [subjectName, predictedGrade] of Object.entries(predictedGrades)) {
 		let slot = $('<div class="slot"></div>');
 		slot.append(`<div class="slot-title"><img src="/icons/${predictedGrade.id}.png" alt="Icon of ${subjectName}"></div>`);
@@ -234,6 +239,7 @@ function updateSlots(full = false) {
 		}
 		
 		if (full) {
+
 			for (let z = 0; z < 41; z++) {
 				let grade = '';
 				let randomNumber = Math.floor(Math.random()*predictedGrade.total);
@@ -244,7 +250,10 @@ function updateSlots(full = false) {
 					}
 				}
 	
-				if (z === 39) slotGrades.append(`<div class="slot-grade slot-grade-actual">${grade}</div>`);
+				if (z === 39) {
+					slotGrades.append(`<div class="slot-grade slot-grade-actual">${grade}</div>`);
+					results.push({ name: subjectName, predictedGrade: predictedGrade.grade, grade: grade });
+				}
 				else slotGrades.append(`<div class="slot-grade slot-grade-fill">${grade}</div>`);
 			}
 		}
@@ -288,8 +297,60 @@ function spin() {
 			$('#spin-button').css('cursor', 'pointer');
 			canSpin = true;
 			spinTimout = null;
+			showResults();
 		}, 1000);
 	}, longestDuration*1000);
 }
 
 $('#spin-button').on('click', spin);
+
+
+// Results canvas
+function showResults() {
+	if (results.length === 0) return;
+	results = results.sort((a, b) => a.name > b.name);
+
+	let totalHeight = (results.length*30+200);
+	if (totalHeight < 842) totalHeight = 842;
+
+	let canvas = document.getElementById('results-canvas');
+	canvas.height = totalHeight;
+	let context = canvas.getContext('2d');
+
+	context.fillStyle = 'white';
+	context.fillRect(0, 0, 595, totalHeight);
+
+	context.fillStyle = 'black';
+	context.font = '25px Arial';
+	context.fillText('GCSE Results', 30, 50);
+
+	context.font = 'italic 12px Arial';
+	context.fillText('Not official results - a joke generate at gcsegrader.joshheng.co.uk', 30, 75);
+
+	context.moveTo(20, 90);
+	context.lineTo(575, 90);
+	context.stroke();
+
+	context.font = 'bold 16px Arial';
+	context.fillText('Title', 30, 115);
+	context.fillText('Grade', 380, 115);
+	context.fillText('Predicted Grade', 445, 115);
+
+	context.moveTo(20, 130);
+	context.lineTo(575, 130);
+	context.stroke();
+
+	context.font = '16px Arial';
+	currentHeight = 170;
+	for (let result of results) {
+		context.fillText(result.name, 30, currentHeight);
+		context.fillText(result.grade, 380, currentHeight);
+		context.fillText(result.predictedGrade, 445, currentHeight);
+		currentHeight += 30;
+	}
+
+	let url = canvas.toDataURL();
+	$('#results-image').attr('src', url);
+	$('#results-download').attr('href', url);
+	$('#results').css('display', 'block');
+}
