@@ -66,6 +66,7 @@ button {
 	border-radius: 0.4rem;
 	overflow: hidden;
 }
+
 .slot-target {
 	background-color: #1282A255;
 	border: 0.3rem solid #1282A2;
@@ -86,6 +87,9 @@ button {
 }
 .slot-grades {
 	animation-fill-mode: forwards;
+}
+.spin {
+	animation-name: spin;
 }
 @keyframes spin {
 	from {
@@ -124,6 +128,50 @@ button {
 }
 .slot-title {
 	background-color: #90708C;
+}
+.slot-title img {
+	object-fit: contain;
+	max-width: 90%;
+	max-height: 90%;
+}
+
+#slots.vertical {
+	flex-direction: column;
+	width: 19rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+#slots.vertical .slot-grades-wrapper {
+	height: 4rem;
+	width: 13.5rem;
+}
+#slots.vertical .slot, #slots.vertical .slot-grades {
+	display: flex;
+}
+#slots.vertical .slot-title {
+	padding-right: 0.5rem;
+}
+#slots.vertical .slot-grade {
+	width: 4.5rem;
+	min-width: 4.5rem;
+}
+#slots.vertical .spin {
+	animation-name: spinHorizontal;
+}
+#slots.vertical .slot-target {
+	height: 100%;
+	margin-left: 9rem;
+	width: 4.5rem;
+	margin-top: 0;
+}
+
+@keyframes spinHorizontal {
+	from {
+		margin-top: 0;
+	}
+	to {
+		margin-left: -171rem; /*38x4.5*/
+	}
 }
 
 #predicted-grades {

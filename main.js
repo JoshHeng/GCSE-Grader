@@ -128,6 +128,25 @@ for (let subject of subjects) {
 	});
 }
 
+//Resizing to vertical slot machine if too small
+var horizontal = true;
+function resize() {
+	if (!predictedGrades) return;
+	const size = ($('#slot-machine').width()-50)/Object.keys(predictedGrades).length;
+	if (size < 45) {
+		if (!horizontal) return;
+		horizontal = false;
+		$('#slots').addClass('vertical');
+	}
+	else {
+		if (horizontal) return;
+		horizontal = true;
+		$('#slots').removeClass('vertical');
+	}
+}
+$(window).on('resize', resize);
+$(window).ready(resize);
+
 var longestDuration = 0;
 function updateSlots(full = false) {
 	if (spinTimeout) {
@@ -136,6 +155,7 @@ function updateSlots(full = false) {
 		document.getElementById('audio-success').pause();
 		spinTimeout = null;
 	}
+
 	$('#slots').empty();
 	if (Object.keys(predictedGrades).length > 0) {
 		canSpin = true;
@@ -192,6 +212,7 @@ function updateSlots(full = false) {
 		slot.append(slotGradesWrapper);
 		$('#slots').append(slot)
 	}
+	resize();
 	$('#slots').append('<div class="slot-target"></div>');
 }
 
@@ -203,7 +224,7 @@ function spin() {
 	canSpin = false;
 	$('#spin-button').text('Calculating...');
 	$('#spin-button').css('cursor', 'not-allowed');
-	$('.slot-grades').css('animation-name', 'spin');
+	$('.slot-grades').addClass('spin');
 
 	spinTimeout = setTimeout(() => {
 		$('.slot-grades').css('duration', 0);
