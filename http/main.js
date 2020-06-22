@@ -128,7 +128,7 @@ updateSlots();
 for (let subject of subjects) {
 	$('#predicted-grades').append(`
 	<div class="subject ${!predictedGrades[subject.name] && 'subject-disabled'}" id="${subject.id}">
-		<img src="/icons/${subject.id}.png" alt="Icon of ${subject.name}">
+		<img src="/images/${subject.id}.png" alt="Icon of ${subject.name}">
 		<h3>${subject.name}</h3>
 		<div class="predicted-grade-controls">
 			<div id="${subject.id}-down" class="arrow-div"><i class="arrow arrow-left"></i></div>
@@ -225,7 +225,7 @@ function updateSlots(full = false) {
 
 	for (let [subjectName, predictedGrade] of Object.entries(predictedGrades)) {
 		let slot = $('<div class="slot"></div>');
-		slot.append(`<div class="slot-title"><img src="/icons/${predictedGrade.id}.png" alt="Icon of ${subjectName}"></div>`);
+		slot.append(`<div class="slot-title"><img src="/images/${predictedGrade.id}.png" alt="Icon of ${subjectName}"></div>`);
 
 		let slotGradesWrapper = $(`<div class="slot-grades-wrapper"></div>`);
 
