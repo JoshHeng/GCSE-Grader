@@ -325,7 +325,7 @@ function showResults() {
 	context.fillText('GCSE Results', 30, 50);
 
 	context.font = 'italic 12px Arial';
-	context.fillText('Not official results - a joke generate at gcsegrader.joshheng.co.uk', 30, 75);
+	context.fillText('Not official results - a joke generated at gcsegrader.joshheng.co.uk', 30, 75);
 
 	context.moveTo(20, 90);
 	context.lineTo(575, 90);
