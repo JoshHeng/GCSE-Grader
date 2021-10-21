@@ -1,15 +1,15 @@
 var gradeTotal = 0;
 var grades = [
-	{ grade: 'U', proportion: 1.7 },
-	{ grade: '1', proportion: 4.5 },
-	{ grade: '2', proportion: 9.5 },
-	{ grade: '3', proportion: 17.3 },
-	{ grade: '4', proportion: 16.4 },
-	{ grade: '5', proportion: 16.6 },
-	{ grade: '6', proportion: 13.4 },
-	{ grade: '7', proportion: 9.4 },
-	{ grade: '8', proportion: 6.7 },
-	{ grade: '9', proportion: 4.5 }
+	{ grade: 'U', proportion: 0.8 },
+	{ grade: '1', proportion: 2.9 },
+	{ grade: '2', proportion: 6.1 },
+	{ grade: '3', proportion: 11.1 },
+	{ grade: '4', proportion: 16.3 },
+	{ grade: '5', proportion: 17.6 },
+	{ grade: '6', proportion: 15.2 },
+	{ grade: '7', proportion: 12.7 },
+	{ grade: '8', proportion: 9.6 },
+	{ grade: '9', proportion: 7.7 }
 ];
 const subjects = [
 	{ id: 'maths', name: 'Maths' },
